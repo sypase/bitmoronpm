@@ -1,45 +1,3 @@
-// class bitmoroService {
-//     constructor(apiKey) {
-//       this.apiKey = apiKey;
-//       this.apiUrl = 'https://api.bitmoro.com/message/api';
-//     }
-  
-//     async sendMessage(message, phoneNumber) {
-//       const headers = {
-//         'Authorization': `Bearer ${this.apiKey}`,
-//         'Content-Type': 'application/json'
-//       };
-  
-//       const body = {
-//         'number': phoneNumber,
-//         'message': message
-//       };
-  
-//       try {
-//         const response = await fetch(this.apiUrl, {
-//           method: 'POST',
-//           headers,
-//           body: JSON.stringify(body)
-//         });
-  
-//         console.log(response);
-  
-//         // if (!response.ok) {
-//         //   throw new Error(`HTTP error status: ${response.status}`);
-//         // }
-  
-//         const data = await response.json();
-//         return data;
-//       } catch (error) {
-//         console.error('Error sending message:', error);
-//         throw error;
-//       }
-//     }
-//   }
-  
-//   export default bitmoroService;
-
-
 class bitmoroService {
     constructor(apiKey) {
       this.apiKey = apiKey;
@@ -64,13 +22,6 @@ class bitmoroService {
           headers,
           body: JSON.stringify(body)
         });
-  
-        console.log(response);
-  
-        // if (!response.ok) {
-        //   throw new Error(`HTTP error status: ${response.status}`);
-        // }
-  
         const data = await response.json();
         return data;
       } catch (error) {
@@ -126,7 +77,7 @@ class bitmoroService {
       const message = `Your new OTP is: ${newOtp}`;
       const response = await this.sendMessage(message, number);
   
-      if (response.status === 200) {
+      if (response.message === 'Message sent') {
         this.otpMap.set(number, { otp: newOtp, timestamp: Date.now() + 10 * 1000, resendTimestamp: Date.now() + 60 * 1000 });
         return newOtp;
       } else {
