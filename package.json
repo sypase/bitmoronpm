@@ -1,6 +1,6 @@
 {
   "name": "bitmoro",
-  "version": "1.0.7",
+  "version": "1.0.12",
   "description": "Service",
   "main": "index.js",
   "scripts": {
